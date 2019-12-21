@@ -43,6 +43,11 @@ app.get('/', (req, res) => {
   });
 });
 
+app.post('/search', (req, res) => {
+  console.log(req.body.search);
+  res.redirect('/');
+});
+
 app.post('/', (req, res) => {
   user.estimatedDocumentCount((err, count) => {
     if (count) {
@@ -86,7 +91,6 @@ app.get('/addBook', (req, res) => {
 });
 
 app.post('/addBook', (req, res) => {
-  console.log(req.body.id);
 
   var book = { 'id': req.body.id, 'name': req.body.name, count: Number(req.body.count) };
 
