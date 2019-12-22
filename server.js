@@ -8,7 +8,7 @@ var user;
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 MongoClient.connect('mongodb+srv://artem:h0Sw19XgFppbsf3X@test-cmnmp.mongodb.net/test?retryWrites=true&w=majority',
