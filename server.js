@@ -92,7 +92,12 @@ app.get('/addBook', (req, res) => {
 
 app.post('/addBook', (req, res) => {
 
-  var book = { 'id': req.body.id, 'name': req.body.name, count: Number(req.body.count) };
+  var book = {'id': req.body.id,
+              'authors' : req.body.authors,
+              'editioncode' : req.body.editioncode,
+              'edition' : req.body.edition,
+              'name': req.body.name,
+              count: Number(req.body.count) };
 
   books.insertOne(book, err => {
     if (err) {
