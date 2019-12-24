@@ -1,6 +1,7 @@
 function findBooks(name) {
   name = name.toLowerCase();
   var books = Array.from(document.getElementById('album').children);
+  
   if (name != '') {
     var res = books.filter(book =>
       !book.getAttribute('id').toLowerCase().match(name) ||
