@@ -14,10 +14,15 @@
                     <div class="col-2-xl">
                         <div class="card mb-2 shadow-sm">
                             <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= books[i].name %>
+                                </h5>
                                 <p class="card-text">
-                                    name : <%= books[i].name %> </br>
-                                    count of books : <%= books[i].count %> </br>
-                                    return date: <%= books[i].date %>
+                                    <b>ISBN-10</b> <%= books[i].id %> <br>
+                                    <b>Authors</b> <%= books[i].authors %> <br>
+                                    <b>Edition code</b> <%= books[i].editioncode %> <br>
+                                    <b>Edition</b> <%= books[i].edition %> <br>
+                                    <b>return to</b> <%= books[i].date %>
                                 </p>
                                 <form action="/user" method="POST">
                                     <input type="hidden" name="book_id" value="<%= books[i].id %>" />

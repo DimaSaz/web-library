@@ -2,16 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 var MongoClient = require('mongodb').MongoClient;
-var http = require('http').Server(app);
 var books;
 var user;
 
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-MongoClient.connect('mongodb+srv://artem:h0Sw19XgFppbsf3X@test-cmnmp.mongodb.net/test?retryWrites=true&w=majority',
+MongoClient.connect('mongodb://localhost:27017/',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -31,7 +30,7 @@ MongoClient.connect('mongodb+srv://artem:h0Sw19XgFppbsf3X@test-cmnmp.mongodb.net
     });
 
     app.listen(3000, function () {
-      console.log(`Работаем: http://localhost:3000`);
+      console.log(`Here we go http://localhost:3000`);
     });
   });
 
@@ -43,14 +42,9 @@ app.get('/', (req, res) => {
   });
 });
 
-app.post('/search', (req, res) => {
-  console.log(req.body.search);
-  res.redirect('/');
-});
-
 app.post('/', (req, res) => {
   user.estimatedDocumentCount((err, count) => {
-    if (count) {
+    if (count != 0) {
       res.send({ 'error': 'return book first!' });
     } else {
       books.findOneAndUpdate({ 'id': req.body.book_id }, { $inc: { 'count': -1 } }, (err, book) => {
